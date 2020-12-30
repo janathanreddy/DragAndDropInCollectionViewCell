@@ -1,10 +1,10 @@
 //
-//  DragDropViewController.swift
-//  DragAndDropInCollectionView
+//  ViewController.swift
+//  DragAndDropCollectionViewCells
 //
-//  Created by Payal Gupta on 06/11/17.
-//  Copyright © 2017 Payal Gupta. All rights reserved.
+//  Created by Janarthan Subburaj on 29/12/20.
 //
+
 
 import UIKit
 
