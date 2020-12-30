@@ -14,21 +14,21 @@ class DragDropViewController: UIViewController
     
     private var items2 = [String]()
 
-     weak var collectionView1: UICollectionView!
-     weak var collectionView2: UICollectionView!
+    @IBOutlet weak var ColView1: UICollectionView!
+    @IBOutlet weak var ColView2: UICollectionView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        self.collectionView1.dragInteractionEnabled = true
-        self.collectionView1.dragDelegate = self
-        self.collectionView1.dropDelegate = self
+        self.ColView1.dragInteractionEnabled = true
+        self.ColView1.dragDelegate = self
+        self.ColView1.dropDelegate = self
         
-        self.collectionView2.dragInteractionEnabled = true
-        self.collectionView2.dropDelegate = self
-        self.collectionView2.dragDelegate = self
-        self.collectionView2.reorderingCadence = .fast //default value - .immediate
+        self.ColView2.dragInteractionEnabled = true
+        self.ColView2.dropDelegate = self
+        self.ColView2.dragDelegate = self
+        self.ColView2.reorderingCadence = .fast
     }
     
     private func reorderItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView)
@@ -42,7 +42,7 @@ class DragDropViewController: UIViewController
                 dIndexPath.row = collectionView.numberOfItems(inSection: 0) - 1
             }
             collectionView.performBatchUpdates({
-                if collectionView === self.collectionView2
+                if collectionView === self.ColView2
                 {
                     self.items2.remove(at: sourceIndexPath.row)
                     self.items2.insert(item.dragItem.localObject as! String, at: dIndexPath.row)
@@ -66,7 +66,7 @@ class DragDropViewController: UIViewController
             for (index, item) in coordinator.items.enumerated()
             {
                 let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
-                if collectionView === self.collectionView2
+                if collectionView === self.ColView2
                 {
                     self.items2.insert(item.dragItem.localObject as! String, at: indexPath.row)
                 }
@@ -85,12 +85,12 @@ extension DragDropViewController : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return collectionView == self.collectionView1 ? self.items1.count : self.items2.count
+        return collectionView == self.ColView1 ? self.items1.count : self.items2.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        if collectionView == self.collectionView1
+        if collectionView == self.ColView1
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! DragDropCollectionViewCell
             cell.customImageView?.image = UIImage(named: self.items1[indexPath.row])
@@ -111,7 +111,7 @@ extension DragDropViewController : UICollectionViewDragDelegate
 {
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem]
     {
-        let item = collectionView == collectionView1 ? self.items1[indexPath.row] : self.items2[indexPath.row]
+        let item = collectionView == ColView1 ? self.items1[indexPath.row] : self.items2[indexPath.row]
         let itemProvider = NSItemProvider(object: item as NSString)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = item
@@ -120,7 +120,7 @@ extension DragDropViewController : UICollectionViewDragDelegate
     
     func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem]
     {
-        let item = collectionView == collectionView1 ? self.items1[indexPath.row] : self.items2[indexPath.row]
+        let item = collectionView == ColView1 ? self.items1[indexPath.row] : self.items2[indexPath.row]
         let itemProvider = NSItemProvider(object: item as NSString)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = item
@@ -129,7 +129,7 @@ extension DragDropViewController : UICollectionViewDragDelegate
     
     func collectionView(_ collectionView: UICollectionView, dragPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters?
     {
-        if collectionView == collectionView1
+        if collectionView == ColView1
         {
             let previewParameters = UIDragPreviewParameters()
             previewParameters.visiblePath = UIBezierPath(rect: CGRect(x: 25, y: 25, width: 120, height: 120))
@@ -148,7 +148,7 @@ extension DragDropViewController : UICollectionViewDropDelegate
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal
     {
-        if collectionView === self.collectionView1
+        if collectionView === self.ColView1
         {
             if collectionView.hasActiveDrag
             {

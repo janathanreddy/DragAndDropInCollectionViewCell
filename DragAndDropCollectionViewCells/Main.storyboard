@@ -75,8 +75,10 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="NZe-jU-1hk"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="B55-sR-2nI"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="rWG-f0-6Em"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="I1C-jJ-04d"/>
+                                    <outlet property="dragDelegate" destination="BYZ-38-t0r" id="emB-0k-1Yq"/>
+                                    <outlet property="dropDelegate" destination="BYZ-38-t0r" id="Pwc-Ut-Vut"/>
                                 </connections>
                             </collectionView>
                             <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture" translatesAutoresizingMaskIntoConstraints="NO" id="Cem-9x-d8O">
@@ -149,8 +151,10 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="8ul-vH-HVX"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ljh-bt-3WA"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="abS-Wk-ptX"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="mdk-Hk-660"/>
+                                    <outlet property="dragDelegate" destination="BYZ-38-t0r" id="L99-Rx-L3U"/>
+                                    <outlet property="dropDelegate" destination="BYZ-38-t0r" id="nmt-ER-HKN"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -175,8 +179,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Drag and Drop CollectionView" id="zeb-Ex-mE8"/>
                     <connections>
-                        <outlet property="collectionView1" destination="jwq-kF-6Nq" id="Bur-i1-50r"/>
-                        <outlet property="collectionView2" destination="fGo-qU-AYi" id="TcD-xi-MVI"/>
+                        <outlet property="ColView1" destination="jwq-kF-6Nq" id="rc9-un-6rW"/>
+                        <outlet property="ColView2" destination="fGo-qU-AYi" id="8PS-1c-ufa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
